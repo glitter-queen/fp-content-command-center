@@ -95,7 +95,7 @@ body{background:var(--bg);color:var(--text-dark);font-family:var(--font-body);fo
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:14px;}
 .stat{background:var(--surface2);border:1px solid var(--border-dark);border-radius:var(--r-sm);padding:16px 12px;text-align:center;}
 .stat-num{font-family:var(--font-display);font-size:30px;line-height:1;background:linear-gradient(135deg,var(--pink),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.stat-label{font-size:11px;color:var(--hint-dark);margin-top:5px;}
+.stat-label{font-size:11px;color:rgba(255,255,255,0.75);margin-top:5px;}
 
 /* INPUTS — dark */
 input.dk,select.dk{background:var(--surface2);border:1px solid var(--border-dark);border-radius:var(--r-sm);padding:9px 13px;color:var(--text-dark);font-size:13px;font-family:var(--font-body);outline:none;transition:border-color 0.15s;}
@@ -133,14 +133,14 @@ input.wh:focus,select.wh:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgb
 
 /* WEEK */
 .week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:14px;}
-.week-day{background:var(--surface);border:1px solid var(--border-dark);border-radius:var(--r-sm);padding:10px 6px;text-align:center;cursor:pointer;transition:all 0.15s;}
+.week-day{background:rgba(255,0,153,0.14);border:1px solid rgba(255,0,153,0.35);border-radius:var(--r-sm);padding:10px 6px;text-align:center;cursor:pointer;transition:all 0.15s;min-height:90px;}
 .week-day:hover{border-color:var(--border-pink);box-shadow:0 0 14px var(--pink-glow-sm);}
 .week-day.is-today{border-color:var(--pink);box-shadow:0 0 18px var(--pink-glow-sm);}
 .week-day.is-posted{border-color:rgba(0,201,167,0.45);}
-.week-day-name{font-size:9px;text-transform:uppercase;letter-spacing:0.07em;color:var(--hint-dark);margin-bottom:4px;}
+.week-day-name{font-size:9px;text-transform:uppercase;letter-spacing:0.07em;color:#ffffff;font-weight:600;margin-bottom:4px;}
 .week-day-num{font-size:17px;font-weight:500;color:var(--text-dark);margin-bottom:4px;}
-.week-day-type{font-size:9px;color:var(--muted-dark);line-height:1.3;}
-.week-dot{width:6px;height:6px;border-radius:50%;margin:5px auto 0;}
+.week-day-type{font-size:16px;line-height:1.4;}
+.week-dot{width:18px;height:18px;margin:4px auto 0;font-size:14px;text-align:center;line-height:18px;}
 
 /* BLOCKS */
 .block-item{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px solid rgba(0,0,0,0.07);}
@@ -188,6 +188,58 @@ input.wh:focus,select.wh:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgb
 .vault-source{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;background:rgba(255,255,255,0.05);border:1px solid var(--border-dark);color:var(--hint-dark);margin:2px;}
 .item-row-vault{padding:12px 0;border-bottom:1px solid rgba(0,0,0,0.07);}
 .item-row-vault:last-child{border-bottom:none;}
+
+/* MONTH NAV */
+.month-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.month-nav-btn{background:var(--surface2);border:1px solid var(--border-dark);border-radius:var(--r-sm);padding:6px 14px;color:var(--text-dark);cursor:pointer;font-size:16px;transition:all 0.15s;font-family:var(--font-body);}
+.month-nav-btn:hover{border-color:var(--border-pink);color:var(--pink);}
+.month-nav-title{font-family:var(--font-display);font-size:18px;color:var(--text-dark);}
+
+/* MONTH CALENDAR */
+.month-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:8px;}
+.month-header{font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:var(--purple);font-weight:700;text-align:center;padding:4px 0;}
+.month-day{background:var(--surface);border:1px solid var(--border-dark);border-radius:6px;padding:6px 5px;min-height:58px;cursor:pointer;transition:all 0.15s;position:relative;}
+.month-day:hover{border-color:var(--border-pink);}
+.month-day.is-today{border-color:var(--pink);box-shadow:0 0 12px var(--pink-glow-sm);}
+.month-day.this-week{border-color:rgba(255,0,153,0.4);background:rgba(255,0,153,0.08);}
+.month-day.is-posted{border-color:rgba(0,201,167,0.4);}
+.month-day.other-month{opacity:0.3;cursor:default;}
+.month-day.is-drafted{border-color:rgba(245,166,35,0.5);background:rgba(245,166,35,0.05);}
+.week-day.is-drafted{border-color:rgba(245,166,35,0.5);}
+.month-day-num{font-size:11px;font-weight:500;color:var(--text-dark);margin-bottom:3px;}
+.month-day-emoji{font-size:14px;line-height:1;margin:3px 0 2px;}.month-day-status{font-size:10px;font-weight:600;letter-spacing:0.02em;}
+.month-day-check{position:absolute;top:4px;right:5px;font-size:12px;color:var(--teal);}
+.week-day-check{font-size:16px;color:var(--teal);margin-top:4px;}
+
+/* DAY DETAIL CARD — selected day, visually distinct from today */
+.day-detail-card{background:var(--surface2);border:1px solid var(--border-purple);border-radius:var(--r);padding:1.25rem 1.5rem;margin-top:14px;color:var(--text-dark);box-shadow:0 0 24px var(--purple-glow);}
+.day-detail-card .section-label-card{color:var(--muted-dark);}
+.day-detail-card .display-type{color:var(--text-dark);}
+.day-detail-card .body-muted-card{color:var(--muted-dark);}
+
+/* VAULT UPGRADES */
+.vault-quick-btns{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.vault-quick-btn{font-size:12px;padding:5px 12px;border-radius:20px;border:1px solid var(--border-dark);background:var(--surface2);color:var(--text-dark);cursor:pointer;transition:all 0.15s;font-family:var(--font-body);}
+.vault-quick-btn:hover{border-color:var(--border-pink);color:var(--pink);}
+.vault-status-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.vstatus-btn{font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid var(--border-dark);background:transparent;color:var(--muted-dark);cursor:pointer;font-family:var(--font-body);transition:all 0.15s;}
+.vstatus-btn:hover{border-color:var(--border-pink);color:var(--text-dark);}
+.vstatus-btn.active{background:var(--pink-muted);border-color:var(--border-pink);color:var(--text-dark);}
+.idea-card{padding:12px 0;border-bottom:1px solid rgba(0,0,0,0.07);}
+.idea-card:last-child{border-bottom:none;}
+.idea-card-top{display:flex;align-items:flex-start;gap:10px;}
+.idea-card-text{flex:1;font-size:14px;color:var(--card-text);line-height:1.5;}
+.idea-card-meta{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-top:6px;}
+.idea-card-actions{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.status-raw{background:#aaa;}
+.status-drafted{background:var(--amber);}
+.status-used{background:var(--teal);}
+.star-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:0 2px;line-height:1;opacity:0.5;transition:opacity 0.15s;}
+.star-btn:hover{opacity:1;}
+.star-btn.starred{opacity:1;}
+.surprise-btn{background:linear-gradient(135deg,var(--purple),var(--pink));border:none;color:#fff;font-size:13px;font-weight:500;padding:9px 18px;border-radius:var(--r-sm);cursor:pointer;font-family:var(--font-body);box-shadow:0 2px 20px var(--pink-glow);transition:opacity 0.15s;}
+.surprise-btn:hover{opacity:0.85;}
 </style>
 </head>
 <body>
@@ -223,7 +275,18 @@ input.wh:focus,select.wh:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgb
         <div class="section-label-card" id="today-date-label"></div>
         <div class="display-type" id="today-post-type"></div>
         <div class="body-muted-card" id="today-post-desc" style="margin-bottom:14px;"></div>
-        <div id="today-pills"></div>
+        <div id="today-pills" style="margin-bottom:10px;"></div>
+        <div style="margin-bottom:12px;">
+          <span style="font-size:11px;color:var(--card-hint);margin-right:8px;">Override today's type:</span>
+          <select id="today-override" class="wh" style="font-size:12px;padding:4px 10px;" onchange="applyTodayOverride()">
+            <option value="">— use scheduled —</option>
+            <option value="hot-take">Hot Take</option>
+            <option value="vault">Mastermind Vault</option>
+            <option value="real-life">Real Life</option>
+            <option value="pitch">The Pitch</option>
+            <option value="reel">Reel</option>
+          </select>
+        </div>
         <div class="cta-row">
           <button class="btn-card-primary" id="today-write-btn">Write this post ↗</button>
           <button class="btn-card" id="today-reel-btn">Script a reel ↗</button>
@@ -241,12 +304,13 @@ input.wh:focus,select.wh:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgb
         <textarea class="dk" id="quick-text" placeholder="Idea, voice note summary, camera roll moment, shower thought — dump it here..."></textarea>
         <div class="input-row" style="margin-top:8px;">
           <select class="dk" id="quick-type" style="min-width:160px;">
-            <option value="hot-take">Hot take</option>
-            <option value="vault">Mastermind vault</option>
-            <option value="real-life">Real life</option>
-            <option value="pitch">Pitch</option>
-            <option value="camera-roll">Camera roll</option>
-            <option value="reel">Reel idea</option>
+            <option value="raw">💡 Raw idea</option>
+            <option value="hot-take">🔥 Hot take</option>
+            <option value="vault">🧠 Mastermind vault</option>
+            <option value="real-life">📸 Real life</option>
+            <option value="pitch">💰 Pitch</option>
+            <option value="camera-roll">📷 Camera roll</option>
+            <option value="reel">🎬 Reel idea</option>
           </select>
           <button class="btn btn-primary" onclick="quickCapture()">Save to vault</button>
         </div>
@@ -255,10 +319,64 @@ input.wh:focus,select.wh:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgb
 
     <!-- THIS WEEK -->
     <div class="tab" id="tab-week">
-      <div class="section-label">Week at a glance</div>
-      <div class="week-grid" id="week-grid"></div>
-      <div class="card" id="week-detail"><div class="empty">Click a day to see details and mark as posted.</div></div>
-      <div class="cta-row">
+
+      <!-- TODAY PINNED CARD -->
+      <div class="card card-glow" id="week-today-card" style="margin-bottom:18px;">
+        <div class="section-label-card" id="week-today-label"></div>
+        <div class="display-type" id="week-today-type" style="font-size:20px;margin-bottom:6px;"></div>
+        <div class="body-muted-card" id="week-today-desc" style="margin-bottom:12px;"></div>
+        <div id="week-today-pills" style="margin-bottom:10px;"></div>
+        <div style="margin-bottom:12px;">
+          <span style="font-size:11px;color:var(--card-hint);margin-right:8px;">Override type:</span>
+          <select id="week-today-override" class="wh" style="font-size:12px;padding:4px 10px;" onchange="applyWeekTodayOverride()">
+            <option value="">— use scheduled —</option>
+            <option value="hot-take">🔥 Hot Take</option>
+            <option value="vault">🧠 Mastermind Vault</option>
+            <option value="real-life">📸 Real Life</option>
+            <option value="pitch">💰 The Pitch</option>
+            <option value="reel">🎬 Reel</option>
+          </select>
+        </div>
+        <div class="cta-row" style="margin-top:0;">
+          <button class="btn-card-primary" id="week-today-write-btn">Write today's post ↗</button>
+          <button class="btn-card" id="week-today-reel-btn">Script a reel ↗</button>
+          <button class="btn-card" id="week-today-posted-btn" onclick="markTodayPosted()">✓ Mark today as posted</button>
+        </div>
+      </div>
+
+      <!-- THIS WEEK TILES -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+        <div style="flex:1;height:1px;background:var(--border-dark);"></div>
+        <div style="background:rgba(255,0,153,0.12);border:1px solid rgba(255,0,153,0.35);border-radius:20px;padding:4px 16px;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--pink);">This week</div>
+        <div style="flex:1;height:1px;background:var(--border-dark);"></div>
+      </div>
+      <div class="week-grid" id="week-grid" style="margin-bottom:24px;"></div>
+
+
+      <!-- LEGEND -->
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;background:rgba(183,43,179,0.22);border:1px solid rgba(183,43,179,0.55);border-radius:var(--r-sm);padding:10px 14px;">
+        <span style="font-size:11px;color:var(--hint-dark);margin-right:4px;align-self:center;">Key:</span>
+        <span style="font-size:12px;color:#ffffff;">🔥 Hot Take</span>
+        <span style="font-size:12px;color:#ffffff;margin-left:6px;">🧠 Vault</span>
+        <span style="font-size:12px;color:#ffffff;margin-left:6px;">📸 Real Life</span>
+        <span style="font-size:12px;color:#ffffff;margin-left:6px;">💰 Pitch</span>
+        <span style="font-size:12px;color:#ffffff;margin-left:6px;">🎬 Reel</span>
+        <span style="margin-left:10px;font-size:12px;color:var(--teal);">✓ posted</span>
+        <span style="font-size:12px;color:var(--amber);margin-left:6px;">✎ drafted</span>
+        <span style="font-size:12px;color:rgba(255,0,153,0.7);margin-left:6px;">▓ this week</span>
+      </div>
+
+      <div class="month-nav">
+        <button class="month-nav-btn" onclick="shiftMonth(-1)">‹</button>
+        <div class="month-nav-title" id="month-label"></div>
+        <button class="month-nav-btn" onclick="shiftMonth(1)">›</button>
+      </div>
+      <div class="month-grid" id="month-grid"></div>
+
+      <!-- SELECTED DAY DETAIL — purple-glowing dark card -->
+      <div class="day-detail-card" id="day-detail" style="display:none;"></div>
+
+      <div class="cta-row" style="margin-top:18px;">
         <button class="btn btn-primary" onclick="cp('Write all 7 posts for my content week as Ashley Alexander — Hot Take Monday, Mastermind Vault Tuesday, Real Life Wednesday, Soft Pitch Thursday, Hot Take or Teaching Friday, Real Life Saturday, Reel script Sunday. Warm, authentic, confident. No coaching clichés.')">Batch write this week ↗</button>
         <button class="btn" onclick="cp('Write a FemPro video script I can practice with my tripod this week — under 90 seconds, teaches something valuable, positions me as the authority I am')">Tripod practice script ↗</button>
       </div>
@@ -268,17 +386,29 @@ input.wh:focus,select.wh:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgb
     <div class="tab" id="tab-ideas">
       <div class="section-label">Idea vault <span style="color:var(--hint-dark);font-size:10px;font-weight:400;text-transform:none;letter-spacing:0;">— ideas + camera roll, everything in one place</span></div>
 
+      <!-- QUICK ADD BUTTONS -->
+      <div class="vault-quick-btns">
+        <span style="font-size:11px;color:var(--hint-dark);align-self:center;margin-right:2px;">Quick add:</span>
+        <button class="vault-quick-btn" onclick="quickAddType('raw')">💡 Raw idea</button>
+        <button class="vault-quick-btn" onclick="quickAddType('hot-take')">🔥 Hot Take</button>
+        <button class="vault-quick-btn" onclick="quickAddType('vault')">🧠 Vault</button>
+        <button class="vault-quick-btn" onclick="quickAddType('real-life')">📸 Real Life</button>
+        <button class="vault-quick-btn" onclick="quickAddType('pitch')">💰 Pitch</button>
+        <button class="vault-quick-btn" onclick="quickAddType('reel')">🎬 Reel</button>
+      </div>
+
       <!-- ADD IDEA ROW -->
       <div class="capture-card" style="margin-bottom:14px;">
         <div class="input-row" style="margin-bottom:10px;">
           <input type="text" class="dk" id="idea-input" placeholder="Dump an idea fast..." style="flex:1;" oninput="scheduleTagSuggest()" />
           <select class="dk" id="idea-type" style="min-width:150px;">
-            <option value="hot-take">Hot take</option>
-            <option value="vault">Mastermind vault</option>
-            <option value="real-life">Real life</option>
-            <option value="pitch">Pitch</option>
-            <option value="camera-roll">Camera roll</option>
-            <option value="reel">Reel idea</option>
+            <option value="raw">💡 Raw idea</option>
+            <option value="hot-take">🔥 Hot take</option>
+            <option value="vault">🧠 Mastermind vault</option>
+            <option value="real-life">📸 Real life</option>
+            <option value="pitch">💰 Pitch</option>
+            <option value="camera-roll">📷 Camera roll</option>
+            <option value="reel">🎬 Reel idea</option>
           </select>
           <button class="btn btn-primary" onclick="addIdea()">Add</button>
         </div>
@@ -293,29 +423,43 @@ input.wh:focus,select.wh:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgb
         </div>
       </div>
 
-      <!-- FILTER BAR -->
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center;">
+      <!-- STATUS FILTER + SURPRISE ME -->
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+        <div class="vault-status-filter" id="vault-status-filter">
+          <button class="vstatus-btn active" onclick="setStatusFilter(this,'')">All</button>
+          <button class="vstatus-btn" onclick="setStatusFilter(this,'raw')">💡 Raw</button>
+          <button class="vstatus-btn" onclick="setStatusFilter(this,'drafted')">✎ Drafted</button>
+          <button class="vstatus-btn" onclick="setStatusFilter(this,'used')">✓ Used</button>
+          <button class="vstatus-btn" onclick="setStatusFilter(this,'fav')">⭐ Faves</button>
+        </div>
+        <button class="surprise-btn" onclick="surpriseMe()">🎲 Surprise me</button>
+      </div>
+
+      <!-- SEARCH + TYPE + TAG FILTERS -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:center;">
         <input type="text" class="dk" id="vault-search" placeholder="🔍  Search anything..." style="flex:1;min-width:160px;" oninput="filterVault()" />
         <select class="dk" id="vault-type-filter" style="min-width:140px;" onchange="filterVault()">
           <option value="">All types</option>
-          <option value="hot-take">Hot take</option>
-          <option value="vault">Mastermind vault</option>
-          <option value="real-life">Real life</option>
-          <option value="pitch">Pitch</option>
-          <option value="camera-roll">Camera roll</option>
-          <option value="reel">Reel idea</option>
+          <option value="raw">💡 Raw idea</option>
+          <option value="hot-take">🔥 Hot take</option>
+          <option value="vault">🧠 Mastermind vault</option>
+          <option value="real-life">📸 Real life</option>
+          <option value="pitch">💰 Pitch</option>
+          <option value="camera-roll">📷 Camera roll</option>
+          <option value="reel">🎬 Reel idea</option>
           <option value="__roll">📷 Camera roll items</option>
         </select>
         <select class="dk" id="vault-tag-filter" style="min-width:130px;" onchange="filterVault()">
           <option value="">All tags</option>
         </select>
-        <button class="btn btn-sm" onclick="clearVaultFilters()" style="white-space:nowrap;">Clear filters</button>
+        <button class="btn btn-sm" onclick="clearVaultFilters()">Clear</button>
       </div>
 
       <div id="vault-count" style="font-size:12px;color:var(--hint-dark);margin-bottom:10px;"></div>
       <div class="card" id="ideas-list"><div class="loading">Loading vault...</div></div>
       <div class="cta-row">
         <button class="btn btn-primary" onclick="cp('Give me 10 hot take ideas based on my expertise as a woman entrepreneur, AI agency founder, and single mom of two daughters building the Fempowered Empire. Bold, specific, conversation-starting.')">Generate 10 hot takes ↗</button>
+        <button class="btn" onclick="cp('Give me 10 raw content ideas — just the concept, no format. Things Ashley Alexander should talk about based on her life, expertise, and Fempowered Empire journey. Specific and real.')">10 raw ideas ↗</button>
         <button class="btn" onclick="cp('Give me 10 mastermind vault teaching ideas — tips, frameworks, or insights I could share as Ashley Alexander about business, content creation, AI for entrepreneurs, or women\'s empowerment.')">10 teaching ideas ↗</button>
       </div>
     </div>
@@ -327,7 +471,7 @@ input.wh:focus,select.wh:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgb
         <div class="roll-card">
           <div class="roll-card-title">Log a moment</div>
           <div class="roll-card-desc">Right after you take a photo or video, log it here before the abyss swallows it.</div>
-          <input type="text" class="wh" id="roll-input" placeholder="What did you capture?" style="width:100%;margin-bottom:8px;" />
+          <input type="text" class="wh" id="roll-input" placeholder="Describe what you captured..." style="width:100%;margin-bottom:8px;" />
           <select class="wh" id="roll-type" style="width:100%;margin-bottom:8px;">
             <option value="girls">Girls / family</option>
             <option value="behind-scenes">Behind the scenes</option>
@@ -337,7 +481,12 @@ input.wh:focus,select.wh:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgb
             <option value="tripod">Tripod practice</option>
             <option value="other">Other</option>
           </select>
-          <button class="btn-card-primary" style="width:100%;" onclick="addRoll()">Log it</button>
+          <label style="display:block;margin-bottom:8px;">
+            <div style="font-size:11px;color:var(--card-hint);margin-bottom:4px;">Attach photo (optional)</div>
+            <input type="file" id="roll-file" accept="image/*,video/*" style="font-size:12px;color:var(--card-muted);width:100%;" />
+          </label>
+          <button class="btn-card-primary" style="width:100%;" onclick="addRoll()" id="roll-submit-btn">Log it</button>
+          <div id="roll-upload-status" style="font-size:11px;color:var(--card-hint);margin-top:6px;"></div>
         </div>
         <div class="roll-card">
           <div class="roll-card-title">Sunday camera roll audit</div>
@@ -425,8 +574,8 @@ const SCHED={
   5:{type:'Hot Take or Teaching',desc:'Second big written post of the week. Your call based on what\'s alive for you right now.',pill:'pink',label:'text'},
   6:{type:'Real Life',desc:'Weekend energy. Girls, beach, coffee, chaos. The human connection post that makes people love you.',pill:'teal',label:'personal'}
 };
-const TCOLS={'hot-take':'pink',vault:'purple','real-life':'teal',pitch:'amber','camera-roll':'gray',reel:'gray'};
-const TLBLS={'hot-take':'Hot take',vault:'Vault','real-life':'Real life',pitch:'Pitch','camera-roll':'Camera roll',reel:'Reel'};
+const TCOLS={'raw':'gray','hot-take':'pink',vault:'purple','real-life':'teal',pitch:'amber','camera-roll':'gray',reel:'gray'};
+const TLBLS={'raw':'💡 Raw','hot-take':'🔥 Hot take',vault:'🧠 Vault','real-life':'📸 Real life',pitch:'💰 Pitch','camera-roll':'📷 Camera roll',reel:'🎬 Reel'};
 const RLBLS={girls:'Girls/family','behind-scenes':'BTS',workspace:'Workspace',myrtle:'Myrtle Beach',broll:'B-roll',tripod:'Tripod',other:'Other'};
 const DF=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const DS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -437,13 +586,68 @@ window.addEventListener('DOMContentLoaded',()=>{
   sb=window.supabase.createClient(SB_URL,SB_KEY);
   initToday(); initWeek(); loadStats();
   initSparkles();
+  // pre-warm week tab data so month renders if user switches fast
+  initWeekPinnedToday(); initMonthCalendar(); loadMonthStatuses();
 });
 
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
 function cp(prompt){
-  if(navigator.clipboard){navigator.clipboard.writeText(prompt).then(()=>toast('✦ Prompt copied — paste it in Claude!'));}
-  else{toast('Prompt ready — paste it in Claude');}
+  // Try modern clipboard API first
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(prompt).then(()=>{
+      toast('✦ Prompt copied — paste it in Claude!');
+    }).catch(()=>fallbackCopy(prompt));
+  } else {
+    fallbackCopy(prompt);
+  }
+}
+
+function fallbackCopy(prompt){
+  // Create a temporary textarea, select it, copy
+  const ta=document.createElement('textarea');
+  ta.value=prompt;
+  ta.style.cssText='position:fixed;top:0;left:0;opacity:0;pointer-events:none;';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try{
+    const ok=document.execCommand('copy');
+    toast(ok?'✦ Prompt copied — paste it in Claude!':'✦ See prompt below — copy it manually');
+    if(!ok)showPromptModal(prompt);
+  }catch(e){showPromptModal(prompt);}
+  document.body.removeChild(ta);
+}
+
+function showPromptModal(prompt){
+  // Last resort — show the prompt in a modal so user can manually copy
+  let modal=document.getElementById('prompt-modal');
+  if(!modal){
+    modal=document.createElement('div');
+    modal.id='prompt-modal';
+    modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1.5rem;';
+    const inner=document.createElement('div');
+    inner.style.cssText='background:#17121e;border:1px solid rgba(255,0,153,0.3);border-radius:14px;padding:1.5rem;max-width:600px;width:100%;';
+    inner.innerHTML='<div style="font-size:13px;color:#e8e0f0;margin-bottom:10px;">Copy this prompt and paste it in Claude:</div>'
+      +'<textarea id="prompt-modal-text" style="width:100%;background:#100d14;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px;color:#e8e0f0;font-size:13px;min-height:120px;font-family:DM Sans,sans-serif;resize:vertical;"></textarea>'
+      +'<div style="display:flex;gap:8px;margin-top:10px;">'
+      +'<button onclick="copyModalText()" style="background:linear-gradient(135deg,#ff0099,#b72bb3);border:none;color:#fff;padding:8px 18px;border-radius:8px;cursor:pointer;font-size:13px;">Copy</button>'
+      +'<button onclick="closePromptModal()" style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:#e8e0f0;padding:8px 18px;border-radius:8px;cursor:pointer;font-size:13px;">Close</button>'
+      +'</div>';
+    modal.appendChild(inner);
+    document.body.appendChild(modal);
+    modal.addEventListener('click',e=>{if(e.target===modal)modal.remove();});
+  }
+  document.getElementById('prompt-modal-text').value=prompt;
+}
+
+function closePromptModal(){const m=document.getElementById('prompt-modal');if(m)m.remove();}
+function copyModalText(){
+  const ta=document.getElementById('prompt-modal-text');
+  ta.select();
+  document.execCommand('copy');
+  toast('✦ Copied!');
+  setTimeout(()=>{const m=document.getElementById('prompt-modal');if(m)m.remove();},600);
 }
 
 async function loadStats(){
@@ -469,6 +673,51 @@ async function loadStats(){
 
 function weekStart(){const n=new Date(),d=new Date(n);d.setDate(n.getDate()-n.getDay());return d.toISOString().split('T')[0];}
 
+function applyWeekTodayOverride(){
+  const override=document.getElementById('week-today-override').value;
+  const n=new Date(),dow=n.getDay();
+  const base=SCHED[dow];
+  const OMAP={
+    'hot-take':{type:'Hot Take',desc:'Your unfiltered opinion — business, hustle culture, AI, women\'s work. Written post. This is your viral engine.',pill:'pink',label:'text'},
+    'vault':{type:'Mastermind Vault',desc:'One tip, framework, or insight from your genius brain. Carousel or strong caption.',pill:'purple',label:'teaching'},
+    'real-life':{type:'Real Life',desc:'Photo + caption. Adelaide & Aurora, Myrtle Beach, behind the empire. Authentic moment.',pill:'teal',label:'personal'},
+    'pitch':{type:'The Pitch',desc:'Soft sell. Share from FemPro page, a client win, or what you\'re building. CTA invited, not pushed.',pill:'amber',label:'offer'},
+    'reel':{type:'Reel',desc:'Voice note reel. Record like texting your bestie. Add b-roll or a still behind it. Done.',pill:'gray',label:'video'}
+  };
+  const s=override?OMAP[override]:base;
+  document.getElementById('week-today-type').textContent=s.type;
+  document.getElementById('week-today-desc').textContent=s.desc;
+  document.getElementById('week-today-pills').innerHTML='<span class="pill pill-'+s.pill+'">'+s.label+'</span>';
+  document.getElementById('week-today-write-btn').onclick=()=>cp('Write a '+s.type+' post for my personal Facebook as Ashley Alexander for today. Warm, confident, authentic. No coaching clichés. Ready to copy-paste.');
+  document.getElementById('week-today-reel-btn').onclick=()=>cp('Write a voice note reel script for a '+s.type+' post as Ashley Alexander. Under 60 seconds spoken. Like texting my bestie. Soft CTA at the end.');
+  // Update today's emoji on the week tile
+  const todayDs=new Date().toISOString().split('T')[0];
+  const tileEmoji=document.getElementById('wemoji-'+todayDs);
+  if(tileEmoji){
+    const EMAP={'hot-take':'🔥','vault':'🧠','real-life':'📸','pitch':'💰','reel':'🎬'};
+    tileEmoji.textContent=override?EMAP[override]:TYPE_EMOJI[new Date().getDay()];
+  }
+}
+
+function applyTodayOverride(){
+  const override=document.getElementById('today-override').value;
+  const n=new Date(),dow=n.getDay();
+  const base=SCHED[dow];
+  const OVERRIDE_MAP={
+    'hot-take':{type:'Hot Take',desc:'Your unfiltered opinion — business, hustle culture, AI, women\'s work. Written post. This is your viral engine.',pill:'pink',label:'text'},
+    'vault':{type:'Mastermind Vault',desc:'One tip, framework, or insight from your genius brain. Carousel or strong caption.',pill:'purple',label:'teaching'},
+    'real-life':{type:'Real Life',desc:'Photo + caption. Adelaide & Aurora, Myrtle Beach, behind the empire. Authentic moment.',pill:'teal',label:'personal'},
+    'pitch':{type:'The Pitch',desc:'Soft sell. Share from FemPro page, a client win, or what you\'re building. CTA invited, not pushed.',pill:'amber',label:'offer'},
+    'reel':{type:'Reel',desc:'Voice note reel. Record like texting your bestie. Add b-roll or a still behind it. Done.',pill:'gray',label:'video'}
+  };
+  const s=override?OVERRIDE_MAP[override]:base;
+  document.getElementById('today-post-type').textContent=s.type;
+  document.getElementById('today-post-desc').textContent=s.desc;
+  document.getElementById('today-pills').innerHTML='<span class="pill pill-'+s.pill+'">'+s.label+'</span>';
+  document.getElementById('today-write-btn').onclick=()=>cp('Write a '+s.type+' post for my personal Facebook as Ashley Alexander for today. Warm, confident, authentic. Specific and real. No coaching clichés. Ready to copy-paste.');
+  document.getElementById('today-reel-btn').onclick=()=>cp('Write a voice note reel script for a '+s.type+' post as Ashley Alexander. Under 60 seconds spoken. Like texting my bestie who needs to hear this. Soft CTA at the end.');
+}
+
 function initToday(){
   const n=new Date(),dow=n.getDay(),s=SCHED[dow];
   document.getElementById('today-date-label').textContent=DF[dow]+', '+n.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
@@ -477,6 +726,7 @@ function initToday(){
   document.getElementById('today-pills').innerHTML='<span class="pill pill-'+s.pill+'">'+s.label+'</span>';
   document.getElementById('today-write-btn').onclick=()=>cp('Write a '+s.type+' post for my personal Facebook as Ashley Alexander for '+DF[dow]+'. Warm, confident, authentic. Specific and real. No coaching clichés. Ready to copy-paste.');
   document.getElementById('today-reel-btn').onclick=()=>cp('Write a voice note reel script for a '+s.type+' post as Ashley Alexander. Under 60 seconds spoken. Like texting my bestie who needs to hear this. Soft CTA at the end.');
+  document.getElementById('today-override').value='';
 }
 
 function initWeek(){
@@ -484,34 +734,276 @@ function initWeek(){
   for(let i=0;i<7;i++){
     const d=new Date(n);d.setDate(n.getDate()-n.getDay()+i);
     const s=SCHED[d.getDay()],isT=d.toDateString()===n.toDateString(),ds=d.toISOString().split('T')[0];
-    html+=`<div class="week-day ${isT?'is-today':''}" id="wday-${ds}" onclick="selDay('${ds}',${d.getDay()},${d.getDate()})"><div class="week-day-name">${DS[d.getDay()]}</div><div class="week-day-num">${d.getDate()}</div><div class="week-day-type">${s.type.split(' ')[0]}</div><div class="week-dot" id="dot-${ds}" style="background:${isT?'var(--pink)':'transparent'}"></div></div>`;
+    const emoji=TYPE_EMOJI[d.getDay()];
+    html+='<div class="week-day '+(isT?'is-today':'')+'" id="wday-'+ds+'"'
+      +' data-ds="'+ds+'" data-dow="'+d.getDay()+'" data-daynum="'+d.getDate()+'"'
+      +' onclick="handleWeekDayClick(this)">'
+      +'<div class="week-day-name">'+DS[d.getDay()]+'</div>'
+      +'<div class="week-day-num" style="display:flex;align-items:center;justify-content:center;gap:3px;">'
+        +d.getDate()
+        +'<span id="dot-'+ds+'" style="font-size:11px;line-height:1;"></span>'
+      +'</div>'
+      +'<div class="week-day-type" id="wemoji-'+ds+'">'+emoji+'</div>'
+      +'</div>';
   }
   document.getElementById('week-grid').innerHTML=html;
   checkPosted();
 }
 
 async function checkPosted(){
-  try{const{data}=await sb.from('ccc_posted').select('posted_date').gte('posted_date',weekStart());
-  if(data)data.forEach(r=>{const dot=document.getElementById('dot-'+r.posted_date),day=document.getElementById('wday-'+r.posted_date);if(dot)dot.style.background='var(--teal)';if(day)day.classList.add('is-posted');});}catch(e){}
+  try{
+    const{data}=await sb.from('ccc_posted').select('posted_date').gte('posted_date',weekStart());
+    if(data)data.forEach(r=>{
+      const dot=document.getElementById('dot-'+r.posted_date);
+      const day=document.getElementById('wday-'+r.posted_date);
+      const mday=document.getElementById('mday-'+r.posted_date);
+      if(dot){dot.textContent='✓';dot.style.color='var(--teal)';dot.style.fontSize='14px';}
+      if(day)day.classList.add('is-posted');
+      if(mday){mday.classList.add('is-posted');const ck=mday.querySelector('.month-day-check');if(ck)ck.textContent='✓';}
+    });
+    loadMonthStatuses();
+  }catch(e){}
+}
+
+function initWeekPinnedToday(){
+  const n=new Date(),dow=n.getDay(),s=SCHED[dow];
+  const lbl=document.getElementById('week-today-label');
+  const typ=document.getElementById('week-today-type');
+  const dsc=document.getElementById('week-today-desc');
+  const pls=document.getElementById('week-today-pills');
+  if(!lbl)return;
+  lbl.textContent=DF[dow]+', '+n.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  typ.textContent=s.type;
+  dsc.textContent=s.desc;
+  pls.innerHTML='<span class="pill pill-'+s.pill+'">'+ s.label+'</span>';
+  document.getElementById('week-today-write-btn').onclick=()=>cp('Write a '+s.type+' post for my personal Facebook as Ashley Alexander for today, '+DF[dow]+'. Warm, confident, authentic. No coaching clichés. Ready to copy-paste.');
+  document.getElementById('week-today-reel-btn').onclick=()=>cp('Write a voice note reel script for a '+s.type+' post as Ashley Alexander. Under 60 seconds spoken. Like texting my bestie. Soft CTA at the end.');
+  const todayStr=n.toISOString().split('T')[0];
+  const btn=document.getElementById('week-today-posted-btn');
+  btn.onclick=()=>markPosted(todayStr);
+}
+
+function markTodayPosted(){
+  const todayStr=new Date().toISOString().split('T')[0];
+  markPosted(todayStr);
+}
+
+function handleWeekDayClick(el){
+  const ds=el.getAttribute('data-ds');
+  const dow=parseInt(el.getAttribute('data-dow'));
+  const daynum=parseInt(el.getAttribute('data-daynum'));
+  selDay(ds,dow,daynum);
+}
+
+function handleMonthDayClick(el){
+  const ds=el.getAttribute('data-ds');
+  const dow=parseInt(el.getAttribute('data-dow'));
+  const daynum=parseInt(el.getAttribute('data-daynum'));
+  selDay(ds,dow,daynum);
+  // scroll week-detail into view
+  const wd=document.getElementById('week-detail');
+  if(wd)wd.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// Month offset: 0 = current month, -1 = last month, etc.
+let monthOffset=0;
+
+function shiftMonth(dir){
+  monthOffset+=dir;
+  initMonthCalendar();
+  loadMonthStatuses();
+}
+
+const TYPE_EMOJI={
+  0:'🎬', // Reel
+  1:'🔥', // Hot Take
+  2:'🧠', // Mastermind Vault
+  3:'📸', // Real Life
+  4:'💰', // The Pitch
+  5:'🔥', // Hot Take or Teaching
+  6:'📸'  // Real Life
+};
+
+const TYPE_SHORT={
+  0:'Reel',1:'Hot Take',2:'Vault',3:'Real Life',4:'Pitch',5:'Hot Take',6:'Real Life'
+};
+
+function initMonthCalendar(){
+  const today=new Date();
+  const ref=new Date(today.getFullYear(),today.getMonth()+monthOffset,1);
+  const y=ref.getFullYear(),mo=ref.getMonth();
+
+  const label=document.getElementById('month-label');
+  if(label)label.textContent=ref.toLocaleDateString('en-US',{month:'long',year:'numeric'});
+  const grid=document.getElementById('month-grid');
+  if(!grid)return;
+
+  // This week highlight (always based on real today)
+  const wkStart=new Date(today);wkStart.setDate(today.getDate()-today.getDay());
+  const wkEnd=new Date(wkStart);wkEnd.setDate(wkStart.getDate()+6);
+
+  // Day-of-week headers
+  let html=DS.map(d=>'<div class="month-header">'+d+'</div>').join('');
+
+  const firstDay=new Date(y,mo,1);
+  const lastDay=new Date(y,mo+1,0);
+  const startPad=firstDay.getDay();
+
+  // Prev month padding (greyed out)
+  for(let i=0;i<startPad;i++){
+    const d=new Date(y,mo,-(startPad-1-i));
+    html+='<div class="month-day other-month"><div class="month-day-num">'+d.getDate()+'</div></div>';
+  }
+
+  // Days of this month
+  for(let d=1;d<=lastDay.getDate();d++){
+    const date=new Date(y,mo,d);
+    const dateStr=date.toISOString().split('T')[0];
+    const dow=date.getDay();
+    const isToday=date.toDateString()===today.toDateString();
+    const inThisWeek=date>=wkStart&&date<=wkEnd;
+    const classes=['month-day',isToday?'is-today':'',inThisWeek?'this-week':''].filter(Boolean).join(' ');
+    html+='<div class="'+classes+'" id="mday-'+dateStr+'"'
+      +' data-ds="'+dateStr+'" data-dow="'+dow+'" data-daynum="'+d+'"'
+      +' onclick="handleMonthDayClick(this)">'
+      +'<div class="month-day-num">'+d+'</div>'
+      +'<div class="month-day-emoji">'+TYPE_EMOJI[dow]+'</div>'
+      +'<div class="month-day-status" id="mstatus-'+dateStr+'"></div>'
+      +'</div>';
+  }
+
+  // Trailing padding
+  const remaining=(7-((startPad+lastDay.getDate())%7))%7;
+  for(let i=1;i<=remaining;i++){
+    html+='<div class="month-day other-month"><div class="month-day-num">'+i+'</div></div>';
+  }
+
+  grid.innerHTML=html;
+}
+
+async function loadMonthStatuses(){
+  try{
+    const today=new Date();
+    const ref=new Date(today.getFullYear(),today.getMonth()+monthOffset,1);
+    const y=ref.getFullYear(),mo=ref.getMonth();
+    const startStr=new Date(y,mo,1).toISOString().split('T')[0];
+    const endStr=new Date(y,mo+1,0).toISOString().split('T')[0];
+
+    const[{data:posted},{data:drafted}]=await Promise.all([
+      sb.from('ccc_posted').select('posted_date').gte('posted_date',startStr).lte('posted_date',endStr),
+      sb.from('ccc_drafted').select('drafted_date').gte('drafted_date',startStr).lte('drafted_date',endStr)
+    ]);
+
+    // Clear all statuses first
+    document.querySelectorAll('.month-day-status').forEach(el=>{el.textContent='';el.style.color='';});
+    document.querySelectorAll('.month-day').forEach(el=>{el.classList.remove('is-posted','is-drafted');});
+
+    if(posted)posted.forEach(r=>{
+      const el=document.getElementById('mday-'+r.posted_date);
+      const st=document.getElementById('mstatus-'+r.posted_date);
+      const dot=document.getElementById('dot-'+r.posted_date);
+      if(el)el.classList.add('is-posted');
+      if(st){st.textContent='✦ posted';st.style.color='var(--teal)';}
+      if(dot){dot.textContent='✦';dot.style.color='#00e6b8';dot.style.fontSize='11px';}
+    });
+
+    if(drafted)drafted.forEach(r=>{
+      const el=document.getElementById('mday-'+r.drafted_date);
+      const st=document.getElementById('mstatus-'+r.drafted_date);
+      const dot=document.getElementById('dot-'+r.drafted_date);
+      // Only show drafted if not already posted
+      if(el&&!el.classList.contains('is-posted')){
+        el.classList.add('is-drafted');
+        if(st){st.textContent='✦ draft';st.style.color='var(--amber)';}
+        if(dot){dot.textContent='✦';dot.style.color='#f5c842';dot.style.fontSize='11px';}
+      }
+    });
+  }catch(e){console.error('loadMonthStatuses:',e);}
 }
 
 function selDay(ds,dow,dayNum){
   const s=SCHED[dow];
   const writePrompt='Write a '+s.type+' post for my personal Facebook as Ashley Alexander for '+DF[dow]+'. Warm, real, specific. No coaching clichés. Ready to copy-paste.';
-  const html='<div class="section-label-card">'+DF[dow]+' '+dayNum+'</div>'
-    +'<div class="display-type" style="font-size:20px;margin-bottom:6px;">'+s.type+'</div>'
-    +'<div class="body-muted-card" style="margin-bottom:14px;">'+s.desc+'</div>'
+  const html='<div class="section-label-card">'+DF[dow]+' · '+ds+'</div>'
+    +'<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">'
+    +'<span style="font-size:22px;">'+TYPE_EMOJI[dow]+'</span>'
+    +'<div id="selday-type-display" style="font-family:var(--font-display);font-size:20px;color:var(--text-dark);">'+s.type+'</div>'
+    +'</div>'
+    +'<div id="selday-desc-display" class="body-muted-card" style="margin-bottom:10px;">'+s.desc+'</div>'
+    +'<div style="margin-bottom:12px;">'
+    +'<span style="font-size:11px;color:var(--muted-dark);margin-right:8px;">Override type:</span>'
+    +'<select id="selday-override" style="background:var(--surface);border:1px solid var(--border-dark);border-radius:6px;padding:4px 10px;color:var(--text-dark);font-size:12px;font-family:var(--font-body);">'
+    +'<option value="">— use scheduled —</option>'
+    +'<option value="hot-take">🔥 Hot Take</option>'
+    +'<option value="vault">🧠 Mastermind Vault</option>'
+    +'<option value="real-life">📸 Real Life</option>'
+    +'<option value="pitch">💰 The Pitch</option>'
+    +'<option value="reel">🎬 Reel</option>'
+    +'</select>'
+    +'</div>'
     +'<div style="display:flex;gap:8px;flex-wrap:wrap;">'
-    +'<button class="btn-card-primary" onclick="markPosted(\''+ds+'\')">✓ Mark as posted</button>'
-    +'<button class="btn-card" id="wday-write-btn">Write this post ↗</button>'
+    +'<button class="btn-card-primary" id="selday-posted-btn">✓ Posted</button>'
+    +'<button class="btn-card" id="selday-drafted-btn">✎ Drafted</button>'
+    +'<button class="btn-card" id="selday-write-btn">Write this post ↗</button>'
     +'</div>';
-  document.getElementById('week-detail').innerHTML=html;
-  document.getElementById('wday-write-btn').onclick=function(){cp(writePrompt);};
+
+  function wireCard(container){
+    if(!container)return;
+    container.querySelector('#selday-posted-btn').onclick=function(){markPosted(ds);};
+    container.querySelector('#selday-drafted-btn').onclick=function(){markDrafted(ds);};
+    container.querySelector('#selday-write-btn').onclick=function(){cp(writePrompt);};
+    const ovr=container.querySelector('#selday-override');
+    if(ovr)ovr.onchange=function(){
+      const OMAP={
+        'hot-take':{type:'Hot Take',desc:'Your unfiltered opinion — business, hustle culture, AI, women\'s work. Written post.',},
+        'vault':{type:'Mastermind Vault',desc:'One tip, framework, or insight from your genius brain. Teach something useful.'},
+        'real-life':{type:'Real Life',desc:'Photo + caption. Authentic moment — Adelaide & Aurora, Myrtle Beach, behind the empire.'},
+        'pitch':{type:'The Pitch',desc:'Soft sell. Share from FemPro page, a client win, or what you\'re building.'},
+        'reel':{type:'Reel',desc:'Voice note reel. Record like texting your bestie. Add b-roll or a still behind it.'}
+      };
+      const v=this.value;const sel=v?OMAP[v]:s;
+      const td=container.querySelector('#selday-type-display');
+      const dd2=container.querySelector('#selday-desc-display');
+      if(td)td.textContent=sel.type;
+      if(dd2)dd2.textContent=sel.desc;
+      // Update emoji in the header
+      const emojiSpan=container.querySelector('span[style*="font-size:22px"]');
+      const EMAP2={'hot-take':'🔥','vault':'🧠','real-life':'📸','pitch':'💰','reel':'🎬'};
+      if(emojiSpan)emojiSpan.textContent=v?EMAP2[v]:TYPE_EMOJI[dow];
+      const newPrompt='Write a '+sel.type+' post for my personal Facebook as Ashley Alexander for '+DF[dow]+'. Warm, real, specific. No coaching clichés. Ready to copy-paste.';
+      container.querySelector('#selday-write-btn').onclick=function(){cp(newPrompt);};
+    };
+  }
+
+  const wd=document.getElementById('week-detail');
+  if(wd){wd.innerHTML=html;wireCard(wd);}
+
+  const dd=document.getElementById('day-detail');
+  if(dd){dd.innerHTML=html;dd.style.display='block';wireCard(dd);}
 }
 
 async function markPosted(ds){
-  try{await sb.from('ccc_posted').upsert({posted_date:ds});const dot=document.getElementById('dot-'+ds),day=document.getElementById('wday-'+ds);if(dot)dot.style.background='var(--teal)';if(day)day.classList.add('is-posted');await updStreak();await loadStats();toast('✦ Posted! Streak updated.');}
-  catch(e){toast('Could not save — check Supabase');}
+  try{
+    await sb.from('ccc_posted').upsert({posted_date:ds});
+    await updStreak();
+    await loadStats();
+    await loadMonthStatuses();
+    // Also update week tiles if visible
+    const day=document.getElementById('wday-'+ds);
+    if(day)day.classList.add('is-posted');
+    toast('✦ Posted! Streak updated. 🎉');
+  }catch(e){toast('Could not save — check Supabase');}
+}
+
+async function markDrafted(ds){
+  try{
+    await sb.from('ccc_drafted').upsert({drafted_date:ds});
+    await loadMonthStatuses();
+    toast('✎ Marked as drafted!');
+  }catch(e){
+    // Table might not exist yet
+    toast('Run migration-drafted.sql in Supabase first!');
+  }
 }
 
 async function updStreak(){
@@ -545,23 +1037,20 @@ async function suggestTags(text){
   const status=document.getElementById('tag-status');
   status.textContent='✦ generating tags...';
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
+    const res=await fetch('/api/tags',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:100,
-        system:'You are a tagging assistant for Ashley Alexander, a woman entrepreneur, AI agency founder, single mom, and content creator building the Fempowered Empire. Return ONLY a JSON array of 3-5 short lowercase tag strings (no # symbol, max 2 words each) that best categorize the idea. No explanation, no markdown, just the JSON array.',
-        messages:[{role:'user',content:'Tag this content idea: '+text}]
-      })
+      body:JSON.stringify({text})
     });
     const d=await res.json();
-    const raw=d.content&&d.content[0]&&d.content[0].text?d.content[0].text.trim():'[]';
-    const cleaned=raw.replace(/```json|```/g,'').trim();
-    pendingTags=JSON.parse(cleaned);
+    pendingTags=Array.isArray(d.tags)?d.tags:[];
     status.textContent='';
     renderTagChips();
-  }catch(e){status.textContent='(tag suggestion unavailable)';pendingTags=[];}
+  }catch(e){
+    console.error('Tag error:',e);
+    status.textContent='(tag suggestion unavailable)';
+    pendingTags=[];
+  }
 }
 
 function renderTagChips(){
@@ -599,6 +1088,57 @@ async function addIdea(){
 
 // ── VAULT STATE ───────────────────────────────────────────────────────────
 let vaultData=[];
+let vaultStatusFilter='';
+
+function setStatusFilter(btn,status){
+  vaultStatusFilter=status;
+  document.querySelectorAll('.vstatus-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterVault();
+}
+
+function quickAddType(type){
+  const inp=document.getElementById('idea-input');
+  const sel=document.getElementById('idea-type');
+  inp.focus();
+  sel.value=type;
+  // Flash the input to signal it's ready
+  inp.style.borderColor='var(--pink)';
+  setTimeout(()=>inp.style.borderColor='',800);
+}
+
+function surpriseMe(){
+  // Filter to unused/raw ideas only
+  const pool=vaultData.filter(i=>i._source==='idea'&&i.status!=='used');
+  if(!pool.length){toast('No unused ideas in the vault yet — add some!');return;}
+  const pick=pool[Math.floor(Math.random()*pool.length)];
+  // Highlight it by clearing filters and searching for it
+  document.getElementById('vault-search').value=pick.text.substring(0,30);
+  document.getElementById('vault-type-filter').value='';
+  document.getElementById('vault-tag-filter').value='';
+  vaultStatusFilter='';
+  document.querySelectorAll('.vstatus-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector('.vstatus-btn').classList.add('active');
+  filterVault();
+  // Copy a write prompt for it
+  cp('Write a full post based on this idea: "'+pick.text+'" — type: '+(TLBLS[pick.type]||pick.type)+' — as Ashley Alexander for my personal Facebook. Warm, authentic, specific. No coaching clichés. Ready to copy-paste.');
+  toast('🎲 Random idea pulled + prompt copied!');
+}
+
+async function updateIdeaStatus(id,status){
+  try{
+    await sb.from('ccc_ideas').update({status}).eq('id',id);
+    await loadVault();
+    toast(status==='used'?'✓ Marked as used!':status==='drafted'?'✎ Marked as drafted!':'💡 Back to raw');
+  }catch(e){toast('Could not update status');}
+}
+
+async function toggleFavourite(id,current){
+  try{
+    await sb.from('ccc_ideas').update({favourite:!current}).eq('id',id);
+    await loadVault();
+  }catch(e){toast('Could not update');}
+}
 
 async function loadVault(){
   const c=document.getElementById('ideas-list');
@@ -633,11 +1173,24 @@ function populateTagFilter(){
 }
 
 function buildActionBtn(i, isRoll, ea){
-  if(!isRoll){
-    return '<button class="btn-card" onclick="writeIdea(\'' + ea(i.text) + '\',\'' + i.type + '\')">write ↗</button>';
+  if(isRoll){
+    if(i.used)return '<button class="btn-card" disabled>used</button>';
+    return '<button class="btn-card-primary" onclick="useRollFromVault('+i.id+',\''+ea(i.text)+'\',\''+i.type+'\')">use ↗</button>';
   }
-  if(i.used){return '<button class="btn-card" disabled>used</button>';}
-  return '<button class="btn-card-primary" onclick="useRollFromVault(' + i.id + ',\'' + ea(i.text) + '\',\'' + i.type + '\')">use ↗</button>';
+  // Idea — show status cycle + write button
+  const status=i.status||'raw';
+  const fav=i.favourite||false;
+  const starBtn='<button class="star-btn'+(fav?' starred':'')+'" onclick="toggleFavourite('+i.id+','+fav+')" title="Favourite">'+(fav?'⭐':'☆')+'</button>';
+  let statusBtns='';
+  if(status==='raw'){
+    statusBtns='<button class="btn-card" onclick="updateIdeaStatus('+i.id+',\"drafted\")">\u270e Start draft</button>';
+  }else if(status==='drafted'){
+    statusBtns='<button class="btn-card" onclick="updateIdeaStatus('+i.id+',\"used\")">\u2713 Mark used</button>'
+      +'<button class="btn-card" onclick="updateIdeaStatus('+i.id+',\"raw\")">\u21a9 Raw</button>';
+  }else if(status==='used'){
+    statusBtns='<button class="btn-card" onclick="updateIdeaStatus('+i.id+',\"raw\")">\u21a9 Reuse</button>';
+  }
+  return starBtn+statusBtns+'<button class="btn-card" onclick="writeIdea(\"'+ea(i.text)+'\",\"'+i.type+'\")">write \u2197</button>';
 }
 
 function filterVault(){
@@ -649,6 +1202,8 @@ function filterVault(){
     if(typeF==='__roll'&&i._source!=='roll')return false;
     if(typeF&&typeF!=='__roll'&&i.type!==typeF)return false;
     if(tagF&&(!i.tags||!i.tags.includes(tagF)))return false;
+    if(vaultStatusFilter==='fav'&&!i.favourite)return false;
+    if(vaultStatusFilter&&vaultStatusFilter!=='fav'&&i._source==='idea'&&i.status!==vaultStatusFilter)return false;
     if(search){
       const haystack=(i.text+' '+(i.tags||[]).join(' ')+' '+(i.type||'')).toLowerCase();
       if(!haystack.includes(search))return false;
@@ -701,8 +1256,35 @@ async function useRollFromVault(id,text,type){
 async function addRoll(){
   const inp=document.getElementById('roll-input'),text=inp.value.trim();if(!text)return;
   const type=document.getElementById('roll-type').value;
-  try{await sb.from('ccc_roll').insert({text,type,used:false,created_at:new Date().toISOString()});inp.value='';await loadRoll();await loadStats();toast('✦ Logged!');}
-  catch(e){toast('Could not save');}
+  const fileInput=document.getElementById('roll-file');
+  const file=fileInput&&fileInput.files&&fileInput.files[0]?fileInput.files[0]:null;
+  const status=document.getElementById('roll-upload-status');
+  const btn=document.getElementById('roll-submit-btn');
+  btn.textContent='Saving...';btn.disabled=true;
+  let photo_url=null;
+  if(file){
+    status.textContent='Uploading photo...';
+    try{
+      const ext=file.name.split('.').pop();
+      const path='roll/'+Date.now()+'.'+ext;
+      const{data,error}=await sb.storage.from('ccc-media').upload(path,file,{upsert:false});
+      if(error)throw error;
+      const{data:urlData}=sb.storage.from('ccc-media').getPublicUrl(path);
+      photo_url=urlData.publicUrl;
+      status.textContent='';
+    }catch(e){
+      console.error('Upload error:',e);
+      status.textContent='Photo upload failed — logging without photo.';
+    }
+  }
+  try{
+    await sb.from('ccc_roll').insert({text,type,used:false,photo_url,created_at:new Date().toISOString()});
+    inp.value='';
+    if(fileInput)fileInput.value='';
+    status.textContent='';
+    await loadRoll();await loadStats();toast('✦ Logged!');
+  }catch(e){toast('Could not save');}
+  btn.textContent='Log it';btn.disabled=false;
 }
 
 async function loadRoll(){
@@ -713,7 +1295,8 @@ async function loadRoll(){
     const btnClass=i.used?'btn-card':'btn-card-primary';
     const btnLabel=i.used?'used':'use ↗';
     const btnClick=i.used?'':'onclick="useRoll('+i.id+',\''+ea(i.text)+'\',\''+i.type+'\')"';
-    return '<div class="item-row" style="'+(i.used?'opacity:0.38;':'')+'"><div><div class="item-text">'+esc(i.text)+'</div><div class="item-meta">'+(RLBLS[i.type]||i.type)+' · '+new Date(i.created_at).toLocaleDateString()+'</div></div><span class="pill pill-gray">'+(RLBLS[i.type]||i.type)+'</span><button class="'+btnClass+'" '+(i.used?'disabled':'')+' '+btnClick+'>'+btnLabel+'</button></div>';
+    const thumb=i.photo_url?'<img src="'+i.photo_url+'" style="width:48px;height:48px;object-fit:cover;border-radius:6px;margin-right:10px;flex-shrink:0;" />'  :'';
+    return '<div class="item-row" style="'+(i.used?'opacity:0.38;':'')+'"><div style="display:flex;align-items:center;">'+thumb+'<div><div class="item-text">'+esc(i.text)+'</div><div class="item-meta">'+(RLBLS[i.type]||i.type)+' · '+new Date(i.created_at).toLocaleDateString()+'</div></div></div><span class="pill pill-gray">'+(RLBLS[i.type]||i.type)+'</span><button class="'+btnClass+'" '+(i.used?'disabled':'')+' '+btnClick+'>'+btnLabel+'</button></div>';
   }).join('');}
   catch(e){c.innerHTML='<div class="empty">Could not load — check Supabase tables.</div>';}
 }
@@ -737,6 +1320,7 @@ function switchTab(id,btn){
   if(id==='ideas')loadVault();
   if(id==='roll')loadRoll();
   if(id==='today')loadStats();
+  if(id==='week'){initWeekPinnedToday();initMonthCalendar();checkPosted();}
 }
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
