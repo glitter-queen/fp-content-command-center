@@ -240,6 +240,27 @@ input.wh:focus,select.wh:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgb
 .star-btn.starred{opacity:1;}
 .surprise-btn{background:linear-gradient(135deg,var(--purple),var(--pink));border:none;color:#fff;font-size:13px;font-weight:500;padding:9px 18px;border-radius:var(--r-sm);cursor:pointer;font-family:var(--font-body);box-shadow:0 2px 20px var(--pink-glow);transition:opacity 0.15s;}
 .surprise-btn:hover{opacity:0.85;}
+
+/* INSPIRATION TAB */
+.inspo-section{margin-bottom:22px;}
+.inspo-section-header{display:flex;align-items:center;gap:10px;cursor:pointer;padding:10px 0;border-bottom:1px solid var(--border-dark);user-select:none;}
+.inspo-section-header:hover .inspo-section-title{color:var(--pink);}
+.inspo-section-emoji{font-size:20px;flex-shrink:0;}
+.inspo-section-title{font-size:15px;font-weight:500;color:var(--text-dark);flex:1;transition:color 0.15s;}
+.inspo-chevron{font-size:12px;color:var(--hint-dark);transition:transform 0.2s;}
+.inspo-chevron.open{transform:rotate(90deg);}
+.inspo-section-body{display:none;padding:12px 0 4px;}
+.inspo-section-body.open{display:block;}
+.inspo-topic-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+.inspo-topic{background:var(--surface2);border:1px solid var(--border-dark);border-radius:20px;padding:5px 13px;font-size:13px;color:var(--text-dark);cursor:pointer;transition:all 0.15s;}
+.inspo-topic:hover{background:var(--pink-muted);border-color:var(--border-pink);color:var(--pink);}
+.inspo-archetype{background:rgba(183,43,179,0.12);border:1px solid rgba(183,43,179,0.3);border-radius:var(--r-sm);padding:10px 14px;margin-bottom:8px;}
+.inspo-archetype-title{font-size:13px;font-weight:500;color:#dd88dd;margin-bottom:3px;}
+.inspo-archetype-desc{font-size:12px;color:var(--muted-dark);line-height:1.5;}
+.inspo-series{background:rgba(255,0,153,0.08);border:1px solid rgba(255,0,153,0.2);border-radius:var(--r-sm);padding:8px 12px;font-size:13px;color:var(--text-dark);margin-bottom:6px;cursor:pointer;transition:all 0.15s;}
+.inspo-series:hover{background:rgba(255,0,153,0.15);border-color:rgba(255,0,153,0.4);}
+.inspo-series-name{font-weight:500;color:#ff88cc;}
+.inspo-dna-card{background:var(--card-bg);border-radius:var(--r);padding:1rem 1.25rem;margin-bottom:10px;}
 </style>
 </head>
 <body>
@@ -263,6 +284,7 @@ input.wh:focus,select.wh:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgb
     <button class="nav-btn" onclick="switchTab('week',this)">This week</button>
     <button class="nav-btn" onclick="switchTab('ideas',this)">Idea vault</button>
     <button class="nav-btn" onclick="switchTab('roll',this)">Camera roll</button>
+    <button class="nav-btn" onclick="switchTab('inspo',this)">✨ Inspiration</button>
     <button class="nav-btn" onclick="switchTab('money',this)">Money map</button>
     <button class="nav-btn" onclick="switchTab('blocks',this)">Block busters</button>
   </div>
@@ -556,6 +578,288 @@ input.wh:focus,select.wh:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgb
       </div>
     </div>
 
+
+    <!-- INSPIRATION -->
+    <div class="tab" id="tab-inspo">
+      <div class="section-label">✨ Inspiration — for when your brain is blank</div>
+      <p style="font-size:13px;color:var(--muted-dark);margin-bottom:18px;line-height:1.6;">You do not have a content scarcity problem. You have a retrieval problem. Everything here is already inside you — this is just the map back.</p>
+
+      <!-- CONTENT DNA -->
+      <div class="inspo-section">
+        <div class="inspo-section-header" onclick="toggleInspo('dna')">
+          <span class="inspo-section-emoji">🧬</span>
+          <span class="inspo-section-title">Your Content DNA — the 5 archetypes that always land</span>
+          <span class="inspo-chevron open" id="chevron-dna">›</span>
+        </div>
+        <div class="inspo-section-body open" id="body-dna">
+          <div class="inspo-dna-card">
+            <div class="inspo-archetype"><div class="inspo-archetype-title">1. Vulnerable hope-filled revelation</div><div class="inspo-archetype-desc">You went through something hard and found the light anyway. The migraine posts. The dental trauma. The rebuilding. People stop scrolling for this.</div></div>
+            <div class="inspo-archetype"><div class="inspo-archetype-title">2. Chaotic whimsical storytelling</div><div class="inspo-archetype-desc">Trash trucks bring you joy. Grocery bag snow shoes. Disco bunny energy. The completely unhinged but sincere delight you have in ridiculous things. This is your signature.</div></div>
+            <div class="inspo-archetype"><div class="inspo-archetype-title">3. Tiny ordinary magic observations</div><div class="inspo-archetype-desc">Dream Brûlée serendipity. Living near water. The coffee shop moment. Romanticizing the ordinary Tuesday. You make people feel their own lives more richly.</div></div>
+            <div class="inspo-archetype"><div class="inspo-archetype-title">4. Unexpected empowering hot takes</div><div class="inspo-archetype-desc">Hustle culture lied. Joy is underrated strategy. Alignment is practical, not woo. You drop these and conversations explode.</div></div>
+            <div class="inspo-archetype"><div class="inspo-archetype-title">5. "Success / life can look different" reframes</div><div class="inspo-archetype-desc">Gray offices are not required. Success doesn't have to look fluorescent-lit. Ambition and peace can coexist. These are your thought leadership threads.</div></div>
+            <div class="cta-row" style="margin-top:12px;">
+              <button class="btn btn-primary" onclick="cp('Write a post in Ashley Alexander\'s \'vulnerable hope-filled revelation\' archetype — something she went through that was hard, with a hopeful and real ending. Warm, personal, no toxic positivity. Ready to post.')">Write archetype 1 ↗</button>
+              <button class="btn" onclick="cp('Write a post in Ashley Alexander\'s \'chaotic whimsical storytelling\' archetype — delightful, unhinged in the best way, something small that brought her irrational joy. Her signature voice. Ready to post.')">Write archetype 2 ↗</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOTHERHOOD -->
+      <div class="inspo-section">
+        <div class="inspo-section-header" onclick="toggleInspo('mom')">
+          <span class="inspo-section-emoji">👧🏻</span>
+          <span class="inspo-section-title">Motherhood / The Girls</span>
+          <span class="inspo-chevron" id="chevron-mom">›</span>
+        </div>
+        <div class="inspo-section-body" id="body-mom">
+          <div class="inspo-topic-grid">
+            <span class="inspo-topic" onclick="seedIdea(this)">Adelaide's wildly creative inventions</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Aurora's old soul one-liners</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Lessons my daughters teach me daily</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Raising intentional girls</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Things I want my daughters to know about womanhood</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">When they cared for me (migraine thread)</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">The girls learning entrepreneurship</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Taylor Swift magic through their eyes</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Motherhood + identity</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Conversations at bedtime</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Family rituals we've created</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Weekly family meetings / intentional living with kids</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">My girls are teaching me...</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Things they do that reveal character</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Being a girl mom</span>
+          </div>
+          <button class="btn btn-sm" onclick="cp('Write a warm, personal Facebook post as Ashley Alexander about her daughters Adelaide and Aurora. Real moment, specific detail, authentic voice. Not saccharine — real girl mom energy. Ready to post.')">Write a girls post ↗</button>
+        </div>
+      </div>
+
+      <!-- RHYS -->
+      <div class="inspo-section">
+        <div class="inspo-section-header" onclick="toggleInspo('rhys')">
+          <span class="inspo-section-emoji">🐩</span>
+          <span class="inspo-section-title">Rhysie Chronicles (an entire genre)</span>
+          <span class="inspo-chevron" id="chevron-rhys">›</span>
+        </div>
+        <div class="inspo-section-body" id="body-rhys">
+          <div class="inspo-topic-grid">
+            <span class="inspo-topic" onclick="seedIdea(this)">Lessons from having an anxious poodle</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Rhys as metaphor for being sensitive in a loud world</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Things Rhys takes very seriously</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Rhys as emotional support executive</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">What loving a dog taught me</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Rhys + motherhood parallels</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Nervous system lessons from my poodle</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Funny Rhys quirks</span>
+          </div>
+          <button class="btn btn-sm" onclick="cp('Write a Facebook post as Ashley Alexander about her anxious poodle Rhys — funny, warm, either a direct Rhys story or using Rhys as a metaphor for something bigger. Her signature whimsical voice. Ready to post.')">Write a Rhys post ↗</button>
+        </div>
+      </div>
+
+      <!-- MYRTLE BEACH -->
+      <div class="inspo-section">
+        <div class="inspo-section-header" onclick="toggleInspo('myrtle')">
+          <span class="inspo-section-emoji">🌊</span>
+          <span class="inspo-section-title">Myrtle Beach / New Life Era</span>
+          <span class="inspo-chevron" id="chevron-myrtle">›</span>
+        </div>
+        <div class="inspo-section-body" id="body-myrtle">
+          <div class="inspo-topic-grid">
+            <span class="inspo-topic" onclick="seedIdea(this)">Moving changed me in ways I didn't expect</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Things healing looked like disguised as relocation</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Myrtle Beach magic moments</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Things I romanticize about my life now</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Living near water and nervous system healing</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">The Dream Brûlée coffee shop serendipity</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Tiny ordinary moments that feel rich</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Rebuilding a life somewhere new</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Success doesn't have to look fluorescent-lit</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Dream life in ordinary Tuesdays</span>
+          </div>
+          <button class="btn btn-sm" onclick="cp('Write a Facebook post as Ashley Alexander about her life in Myrtle Beach SC — the magic of the new chapter, living near water, romanticizing ordinary life. Specific, warm, real. Ready to post.')">Write a Myrtle post ↗</button>
+        </div>
+      </div>
+
+      <!-- HEALTH -->
+      <div class="inspo-section">
+        <div class="inspo-section-header" onclick="toggleInspo('health')">
+          <span class="inspo-section-emoji">💪</span>
+          <span class="inspo-section-title">Health Journey</span>
+          <span class="inspo-chevron" id="chevron-health">›</span>
+        </div>
+        <div class="inspo-section-body" id="body-health">
+          <div class="inspo-topic-grid">
+            <span class="inspo-topic" onclick="seedIdea(this)">Ocular migraine journey</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">What chronic pain taught me about hope</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Finding doctors who listen</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">GLP-1 / health transformation reflections</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Building systems for healing</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Health as self-trust</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">What strength feels like now</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">"Trying any and everything" season</span>
+          </div>
+          <button class="btn btn-sm" onclick="cp('Write a Facebook post as Ashley Alexander about her health journey — honest, hopeful, not performative. Real about the hard parts and the breakthroughs. Ready to post.')">Write a health post ↗</button>
+        </div>
+      </div>
+
+      <!-- VULNERABLE DEPTH -->
+      <div class="inspo-section">
+        <div class="inspo-section-header" onclick="toggleInspo('depth')">
+          <span class="inspo-section-emoji">🕯️</span>
+          <span class="inspo-section-title">Vulnerable / Depth Posts</span>
+          <span class="inspo-chevron" id="chevron-depth">›</span>
+        </div>
+        <div class="inspo-section-body" id="body-depth">
+          <div class="inspo-topic-grid">
+            <span class="inspo-topic" onclick="seedIdea(this)">Dental trauma story</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Grief and losing loved ones</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Things I've had to rebuild from</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">What people don't see behind the optimism</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Choosing joy as discipline</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">How hope is a practice</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">I am upbeat but life is not easy</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Seasons I disappeared and why</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Crying a lot but staying hopeful</span>
+          </div>
+          <button class="btn btn-sm" onclick="cp('Write a vulnerable, depth Facebook post as Ashley Alexander — honest about something hard, but with her signature hopeful undercurrent. Not toxic positivity. Real and moving. Ready to post.')">Write a depth post ↗</button>
+        </div>
+      </div>
+
+      <!-- WHIMSY -->
+      <div class="inspo-section">
+        <div class="inspo-section-header" onclick="toggleInspo('whimsy')">
+          <span class="inspo-section-emoji">🪩</span>
+          <span class="inspo-section-title">Whimsical / Viral-ish "Ashley" Posts</span>
+          <span class="inspo-chevron" id="chevron-whimsy">›</span>
+        </div>
+        <div class="inspo-section-body" id="body-whimsy">
+          <p style="font-size:12px;color:var(--muted-dark);margin-bottom:10px;font-style:italic;">These are your sleeper hits. Your signature.</p>
+          <div class="inspo-topic-grid">
+            <span class="inspo-topic" onclick="seedIdea(this)">Trash trucks bring me joy</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Estate sale chaos stories</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Grocery bag snow shoes</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Things I get irrationally excited about</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">My chaotic thought process in real time</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Tiny absurd things that make life magical</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Over-romanticizing ordinary life sincerely</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">I can be deeply moved by ridiculous things</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Disco bunny level delight posts</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Gratitude train style posts</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Accidental comedy from motherhood</span>
+          </div>
+          <button class="btn btn-sm" onclick="cp('Write a whimsical, chaotic, delightful Facebook post as Ashley Alexander — something small that brought her irrational joy, or an absurd observation about life. Her most viral signature voice. Funny and sincere simultaneously. Ready to post.')">Write a whimsy post ↗</button>
+        </div>
+      </div>
+
+      <!-- EMPOWERMENT -->
+      <div class="inspo-section">
+        <div class="inspo-section-header" onclick="toggleInspo('empower')">
+          <span class="inspo-section-emoji">👑</span>
+          <span class="inspo-section-title">Empowering / Thought Leadership</span>
+          <span class="inspo-chevron" id="chevron-empower">›</span>
+        </div>
+        <div class="inspo-section-body" id="body-empower">
+          <div class="inspo-topic-grid">
+            <span class="inspo-topic" onclick="seedIdea(this)">Alignment lessons</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">No longer being a martyr</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">What success actually looks like</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Building a life you don't need to escape from</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Things I've unlearned as a woman</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Soft power vs hustle culture</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Ambition and peace can coexist</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Reinvention in your 30s/40s</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">The cost of misalignment</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Choosing expansion when life contracts</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Self-honor lessons</span>
+          </div>
+          <button class="btn btn-sm" onclick="cp('Write an empowering thought leadership Facebook post as Ashley Alexander — about alignment, sovereignty, or what success actually looks like. Bold and real, not preachy. Ready to post.')">Write an empowerment post ↗</button>
+        </div>
+      </div>
+
+      <!-- HOT TAKES -->
+      <div class="inspo-section">
+        <div class="inspo-section-header" onclick="toggleInspo('takes')">
+          <span class="inspo-section-emoji">🔥</span>
+          <span class="inspo-section-title">Hot Takes / Conversation Starters</span>
+          <span class="inspo-chevron" id="chevron-takes">›</span>
+        </div>
+        <div class="inspo-section-body" id="body-takes">
+          <div class="inspo-topic-grid">
+            <span class="inspo-topic" onclick="seedIdea(this)">Hustle culture lied to women</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Screen time isn't the real issue</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Alignment is practical, not woo</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">You do not need a gray office to be successful</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Joy is underrated strategy</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">AI shouldn't just be about productivity</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">People underestimate what environment does to the soul</span>
+          </div>
+          <button class="btn btn-sm" onclick="cp('Write a bold Facebook hot take post as Ashley Alexander — an unpopular or counterintuitive opinion about business, life, women, or success. Conversation-starting, confident, her authentic voice. Ready to post.')">Write a hot take ↗</button>
+        </div>
+      </div>
+
+      <!-- AI / FUTURE -->
+      <div class="inspo-section">
+        <div class="inspo-section-header" onclick="toggleInspo('ai')">
+          <span class="inspo-section-emoji">🤖</span>
+          <span class="inspo-section-title">AI / Future / Innovation</span>
+          <span class="inspo-chevron" id="chevron-ai">›</span>
+        </div>
+        <div class="inspo-section-body" id="body-ai">
+          <div class="inspo-topic-grid">
+            <span class="inspo-topic" onclick="seedIdea(this)">Personal software era — building apps for my own life</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">AI for intentional living</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Tiny experiments I'm prototyping</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">What I'm building lately</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Motherhood + AI</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Feminine lens on AI</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Technology as empowerment</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Custom systems for real life</span>
+          </div>
+          <button class="btn btn-sm" onclick="cp('Write a Facebook post as Ashley Alexander about AI and personal technology — her perspective as a woman entrepreneur and mom who builds custom apps for her own life. Accessible, exciting, not bro-coded. Ready to post.')">Write an AI post ↗</button>
+        </div>
+      </div>
+
+      <!-- LIST POSTS -->
+      <div class="inspo-section">
+        <div class="inspo-section-header" onclick="toggleInspo('lists')">
+          <span class="inspo-section-emoji">📋</span>
+          <span class="inspo-section-title">List Posts (always perform)</span>
+          <span class="inspo-chevron" id="chevron-lists">›</span>
+        </div>
+        <div class="inspo-section-body" id="body-lists">
+          <div class="inspo-topic-grid">
+            <span class="inspo-topic" onclick="seedIdea(this)">7 things I'm loving lately</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">10 tiny things making life feel magical</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Things I've changed my mind about</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Things motherhood taught me about leadership</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Things I thought success would be vs what it is</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Things I wish women knew sooner</span>
+            <span class="inspo-topic" onclick="seedIdea(this)">Small joys carrying me lately</span>
+          </div>
+          <button class="btn btn-sm" onclick="cp('Write a list-format Facebook post as Ashley Alexander — 7-10 items, warm and specific, the kind that gets engagement because people see themselves in it. Her authentic voice throughout. Ready to post.')">Write a list post ↗</button>
+        </div>
+      </div>
+
+      <!-- RECURRING SERIES -->
+      <div class="inspo-section">
+        <div class="inspo-section-header" onclick="toggleInspo('series')">
+          <span class="inspo-section-emoji">📺</span>
+          <span class="inspo-section-title">Recurring Series Ideas</span>
+          <span class="inspo-chevron" id="chevron-series">›</span>
+        </div>
+        <div class="inspo-section-body" id="body-series">
+          <p style="font-size:12px;color:var(--muted-dark);margin-bottom:10px;font-style:italic;">Recurrence removes blank-page syndrome. Pick one and own it.</p>
+          <div class="inspo-series" onclick="cp('Write the next installment of Ashley Alexander\'s \'Rhysie Wisdom Wednesdays\' series — a post about her anxious poodle Rhys that is funny, warm, and ends with a surprisingly real insight. Her signature voice. Ready to post.')"><div class="inspo-series-name">🐩 Rhysie Wisdom Wednesdays</div><div style="font-size:12px;color:var(--muted-dark);">Your poodle. An insight. Every Wednesday. Tap to write one.</div></div>
+          <div class="inspo-series" onclick="cp('Write the next installment of Ashley Alexander\'s \'Notes From Girl Mom Life\' series — a real, warm, specific moment from raising Adelaide and Aurora. Her authentic voice. Ready to post.')"><div class="inspo-series-name">👧🏻 Notes From Girl Mom Life</div><div style="font-size:12px;color:var(--muted-dark);">Real moments from raising Adelaide and Aurora. Tap to write one.</div></div>
+          <div class="inspo-series" onclick="cp('Write the next installment of Ashley Alexander\'s \'Tiny Things Making Life Feel Magical\' series — 5-7 small specific things from her actual life right now that are bringing her joy. Warm, specific, relatable. Ready to post.')"><div class="inspo-series-name">✨ Tiny Things Making Life Feel Magical</div><div style="font-size:12px;color:var(--muted-dark);">5-7 small joys from right now. Tap to write one.</div></div>
+          <div class="inspo-series" onclick="cp('Write the next installment of Ashley Alexander\'s \'What I\'m Prototyping Lately\' series — a behind-the-scenes post about the apps, systems, or experiments she\'s currently building for her own life. Exciting, accessible, not bro-coded. Ready to post.')"><div class="inspo-series-name">🤖 What I'm Prototyping Lately</div><div style="font-size:12px;color:var(--muted-dark);">Behind the scenes of what you're building. Tap to write one.</div></div>
+          <div class="inspo-series" onclick="cp('Write the next installment of Ashley Alexander\'s \'Things I\'m Unlearning\' series — one belief, pattern, or habit she has consciously shed, and what replaced it. Thought leadership, personal, real. Ready to post.')"><div class="inspo-series-name">🔄 Things I'm Unlearning</div><div style="font-size:12px;color:var(--muted-dark);">One thing you've shed. What replaced it. Tap to write one.</div></div>
+          <div class="inspo-series" onclick="cp('Write the next installment of Ashley Alexander\'s \'Joy Dispatches\' series — a warm, specific post about something that brought her genuine joy this week. Her signature romanticizing-ordinary-life energy. Ready to post.')"><div class="inspo-series-name">💌 Joy Dispatches</div><div style="font-size:12px;color:var(--muted-dark);">Something that brought you genuine joy this week. Tap to write one.</div></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -581,6 +885,33 @@ const DF=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'
 const DS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 let sb;
+
+
+function toggleInspo(id){
+  const body=document.getElementById('body-'+id);
+  const chevron=document.getElementById('chevron-'+id);
+  if(!body)return;
+  body.classList.toggle('open');
+  chevron.classList.toggle('open');
+}
+
+function seedIdea(el){
+  const text=el.textContent.trim();
+  // Switch to ideas tab and pre-fill the input
+  const ideasBtn=document.querySelectorAll('.nav-btn')[2];
+  switchTab('ideas',ideasBtn);
+  const inp=document.getElementById('idea-input');
+  if(inp){
+    inp.value=text;
+    inp.focus();
+    // Trigger tag suggestion
+    scheduleTagSuggest();
+    // Set type to raw
+    const sel=document.getElementById('idea-type');
+    if(sel)sel.value='raw';
+  }
+  toast('\u2728 Idea seeded — edit and add to vault!');
+}
 
 window.addEventListener('DOMContentLoaded',()=>{
   sb=window.supabase.createClient(SB_URL,SB_KEY);
