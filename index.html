@@ -1180,17 +1180,35 @@ function buildActionBtn(i, isRoll, ea){
   // Idea — show status cycle + write button
   const status=i.status||'raw';
   const fav=i.favourite||false;
-  const starBtn='<button class="star-btn'+(fav?' starred':'')+'" onclick="toggleFavourite('+i.id+','+fav+')" title="Favourite">'+(fav?'⭐':'☆')+'</button>';
+  const starBtn='<button class="star-btn'+(fav?' starred':'')+'" data-id="'+i.id+'" data-fav="'+fav+'" onclick="handleStar(this)" title="Favourite">'+(fav?'\u2b50':'\u2606')+'</button>';
   let statusBtns='';
   if(status==='raw'){
-    statusBtns='<button class="btn-card" onclick="updateIdeaStatus('+i.id+',\"drafted\")">\u270e Start draft</button>';
+    statusBtns='<button class="btn-card status-action" data-id="'+i.id+'" data-status="drafted" onclick="handleStatus(this)">\u270e Start draft</button>';
   }else if(status==='drafted'){
-    statusBtns='<button class="btn-card" onclick="updateIdeaStatus('+i.id+',\"used\")">\u2713 Mark used</button>'
-      +'<button class="btn-card" onclick="updateIdeaStatus('+i.id+',\"raw\")">\u21a9 Raw</button>';
+    statusBtns='<button class="btn-card status-action" data-id="'+i.id+'" data-status="used" onclick="handleStatus(this)">\u2713 Mark used</button>'
+      +'<button class="btn-card status-action" data-id="'+i.id+'" data-status="raw" onclick="handleStatus(this)">\u21a9 Raw</button>';
   }else if(status==='used'){
-    statusBtns='<button class="btn-card" onclick="updateIdeaStatus('+i.id+',\"raw\")">\u21a9 Reuse</button>';
+    statusBtns='<button class="btn-card status-action" data-id="'+i.id+'" data-status="raw" onclick="handleStatus(this)">\u21a9 Reuse</button>';
   }
-  return starBtn+statusBtns+'<button class="btn-card" onclick="writeIdea(\"'+ea(i.text)+'\",\"'+i.type+'\")">write \u2197</button>';
+  return starBtn+statusBtns+'<button class="btn-card write-action" data-text="'+ea(i.text)+'" data-type="'+i.type+'" onclick="handleWrite(this)">write \u2197</button>';
+}
+
+function handleStatus(btn){
+  const id=parseInt(btn.getAttribute('data-id'));
+  const status=btn.getAttribute('data-status');
+  updateIdeaStatus(id,status);
+}
+
+function handleStar(btn){
+  const id=parseInt(btn.getAttribute('data-id'));
+  const fav=btn.getAttribute('data-fav')==='true';
+  toggleFavourite(id,fav);
+}
+
+function handleWrite(btn){
+  const text=btn.getAttribute('data-text');
+  const type=btn.getAttribute('data-type');
+  writeIdea(text,type);
 }
 
 function filterVault(){
